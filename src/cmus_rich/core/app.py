@@ -13,6 +13,7 @@ from cmus_rich.core.cmus_interface import CMUSInterface
 from cmus_rich.core.config import ConfigManager
 from cmus_rich.core.events import EventBus
 from cmus_rich.core.state import AppState
+from cmus_rich.plugins.manager import PluginManager
 
 
 @dataclass
@@ -36,6 +37,8 @@ class CMUSRichApp:
         self.state = AppState()
         self.event_bus = EventBus()
         self.cmus = CMUSInterface()
+        self.plugin_manager = PluginManager()
+        self.plugin_manager.set_app(self)
         self._running = False
         self._tasks: list[asyncio.Task] = []
 
@@ -51,6 +54,9 @@ class CMUSRichApp:
         except Exception as e:
             self.console.print(f"[yellow]Warning: Could not connect to CMUS: {e}[/yellow]")
             self.console.print("[yellow]Please ensure CMUS is running or will be started.[/yellow]")
+
+        # Load plugins
+        await self.plugin_manager.load_plugins()
 
         # Setup signal handlers
         self._setup_signal_handlers()
@@ -174,6 +180,7 @@ class CMUSRichApp:
             await self.state.save()
 
         # Cleanup
+        await self.plugin_manager.unload_plugins()
         await self.cmus.disconnect()
 
         # Remove lock file

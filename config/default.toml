@@ -1,0 +1,70 @@
+# CMUS Rich Configuration
+
+[general]
+theme = "default"
+single_instance = true
+auto_save = true
+save_interval = 300  # seconds
+
+[ui]
+refresh_rate = 0.1  # 10 FPS
+show_album_art = false  # Not implemented yet
+show_visualizer = false  # Not implemented yet
+show_lyrics = false  # Not implemented yet
+layout = "default"
+
+[playback]
+crossfade = 0  # seconds
+gapless = true
+replay_gain = true
+replay_gain_mode = "album"  # album, track, auto
+
+[library]
+paths = ["~/Music"]
+auto_scan = false
+scan_interval = 3600  # seconds
+watch_changes = false
+
+[search]
+fuzzy = true
+case_sensitive = false
+history_size = 100
+
+[keybindings]
+# Playback controls
+play_pause = "space"
+next_track = "n"
+previous_track = "p"
+stop = "s"
+
+# Volume controls
+volume_up = "+"
+volume_down = "-"
+
+# Seeking
+seek_forward = "l"
+seek_backward = "h"
+
+# Navigation
+move_up = "k"
+move_down = "j"
+move_left = "h"
+move_right = "l"
+
+# UI
+search = "/"
+command_palette = "ctrl+p"
+quit = "q"
+
+[network]
+timeout = 10
+retry_count = 3
+cache_size_mb = 50
+
+[plugins]
+enabled = []
+
+[logging]
+level = "INFO"  # DEBUG, INFO, WARNING, ERROR
+file = "~/.local/share/cmus-rich/app.log"
+max_size_mb = 10
