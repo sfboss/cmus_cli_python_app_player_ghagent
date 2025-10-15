@@ -1,0 +1,92 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cmus-rich"
+version = "0.1.0"
+description = "A modern, feature-rich terminal music player that wraps CMUS"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "CMUS Rich Contributors"}
+]
+keywords = ["cmus", "music", "player", "terminal", "tui"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Multimedia :: Sound/Audio :: Players",
+]
+
+dependencies = [
+    "rich>=13.0.0",
+    "aiofiles>=23.0.0",
+    "aiohttp>=3.9.0",
+    "tomli>=2.0.0",
+    "tomli-w>=1.0.0",
+    "watchdog>=3.0.0",
+    "mutagen>=1.47.0",
+    "numpy>=1.24.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-mock>=3.11.0",
+    "pytest-cov>=4.1.0",
+    "black>=23.0.0",
+    "ruff>=0.0.292",
+    "mypy>=1.5.0",
+]
+scrobbling = [
+    "pylast>=5.2.0",
+]
+lyrics = [
+    "lyricsgenius>=3.0.1",
+]
+discord = [
+    "pypresence>=4.3.0",
+]
+all = [
+    "cmus-rich[scrobbling,lyrics,discord]",
+]
+
+[project.scripts]
+cmus-rich = "cmus_rich.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/sfboss/cmus_cli_python_app_player_ghagent"
+Repository = "https://github.com/sfboss/cmus_cli_python_app_player_ghagent"
+Issues = "https://github.com/sfboss/cmus_cli_python_app_player_ghagent/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = "-v --cov=cmus_rich --cov-report=term-missing"
+
+[tool.black]
+line-length = 100
+target-version = ['py310']
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+select = ["E", "F", "W", "I", "N", "UP", "ANN", "B", "A", "C4", "DTZ", "ISC", "ICN", "PIE", "T20", "Q"]
+ignore = ["ANN101", "ANN102", "ANN401"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
