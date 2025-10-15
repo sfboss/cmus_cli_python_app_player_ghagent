@@ -2,6 +2,23 @@
 
 A modern, feature-rich terminal music player that wraps CMUS, providing an intuitive and powerful interface while maintaining the efficiency and reliability of the underlying player.
 
+## Screenshots
+
+![CMUS Rich - Playing](screenshots/dashboard_playing.svg)
+
+<details>
+<summary>More Screenshots</summary>
+
+### Paused State
+![CMUS Rich - Paused](screenshots/dashboard_paused.svg)
+
+### Stopped State
+![CMUS Rich - Stopped](screenshots/dashboard_stopped.svg)
+
+</details>
+
+See the [screenshots directory](screenshots/) for more details.
+
 ## Features
 
 - **Modern TUI**: Beautiful terminal interface built with Rich
